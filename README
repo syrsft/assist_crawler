@@ -1,0 +1,26 @@
+Hi,
+
+This is a URL extractor web application developed using Django web framework.
+It only finds link URLs under given URL to crawl. 
+
+Setup:
+	Assuming you have a running Django environment, you only need to install
+	two extra modules:
+	> sudo easy_install pip (If you have not installed pip before)
+	> sudo pip install BeautifulSoup
+	> sudo pip install httplib2
+
+Running:
+	At the project root folder, run
+	> python manage.py runserver
+
+Tested on MacOS and Linux.
+	Python version : 2.7.10 (MacOS High Sierra)
+	Python version : 2.7.13 (Fedora 25)
+	Django version : 1.11.7
+
+
+Have a nice crawling:)
+
+--LS
+

@@ -1,0 +1,93 @@
+{% load staticfiles i18n %}
+
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <title>ASSIST Crawler Tool</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="/static/crawl/favicon.ico">
+    <link rel="stylesheet" href="/static/crawl/frameworks/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/crawl/css/custom.css">
+    <script src="/static/crawl/js/jquery-1.12.0.min.js"></script>
+    <script src="/static/crawl/frameworks/bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{% url 'crawl:index' %}">A S S I S T</a>
+                </div>
+            </div>
+        </nav>
+
+        {% if error %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <strong>{{ error }}</strong>
+            <button type="button" class="close" data-dismiss="alert">
+                <span>&times;</span>
+            </button>
+        </div>
+        {% endif %}
+
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-md-1"><img height=60px width=60px src="/static/crawl/img/magnifying-glass.png"></div>
+                <div class="col-md-10" style="color:#626262">
+                    <form action="{% url 'crawl:index' %}" role="form" method="post">
+                        {% csrf_token %}
+                         <div class="form-row">
+                             <div class="col">
+                                <input type="url" class="form-control" name="targetUrl" maxlength="80" placeholder="Enter URL to crawl" {% if target_url %} value="{{ target_url }}" {% endif %} required>
+                             </div>
+                             <div class="col">
+                                <button type="submit" class="form-control btn btn-primary">Crawl</button>
+                             </div>
+                         </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        {% if urls  %}
+        <div id="content" style="display: block;">
+            <table class="table table-striped table-hover table-responsive">
+                <thead>
+                    <tr>
+                        <th class="col-md-12"><span class="glyphicon glyphicon-cloud"></span> URL</th>
+                    </tr>
+                </thead>
+                <tbody id="urls">
+                {% for url in urls %}
+                    <tr>
+                        <td><a href="{{ url }}">{{ url }}</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-12 text-center"><ul class="pagination" id="pager"></ul></div>
+
+        <script src="/static/crawl/js/pagenate.min.js"></script>
+        <script>
+            $(document).ready(function() { $('#urls').pagenate();});
+            $(window).resize(function() { $('#urls').pagenate();});
+        </script>
+
+    {% endif %}
+
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2017 Levend Sayar</p>
+        </div>
+    </footer>
+
+</body>
+</html>

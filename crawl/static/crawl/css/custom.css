@@ -1,0 +1,31 @@
+.jumbotron {
+    background-image: url("/static/crawl/img/cloud.png");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.jumbotron .btn-primary {
+    margin-top: 20px;
+}
+
+html, body {
+    height: 100%;
+}
+
+body > .container {
+    min-height: 100%;
+    margin-bottom: -40px;
+}
+
+.footer > .container {
+    border-top: 1px solid #eee;
+    text-align:center;
+    padding-top:7px;
+    height: 40px;
+}
+.td-left {
+    font-weight:bold;
+    text-align: right;
+}
